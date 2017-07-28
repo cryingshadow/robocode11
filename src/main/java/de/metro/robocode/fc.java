@@ -2,28 +2,32 @@ package de.metro.robocode;
 
 import robocode.*;
 
-public class fc extends Robot {
+public class fc extends AdvancedRobot {
+	public void run() {
+		//turn heading to 0
+		if (getHeading()<=180) {
+			turnLeft(getHeading());
+		}
+		else {
+			turnRight(360-getHeading());
+		}
+		//move to ceiling
+		ahead(500);
 
-    @Override
-    public void run() {
-
-        double radius = 100.0;
-        double angle = 90.0;
-
-        while (true) {
-            ahead(radius);
-            turnLeft(angle);
-            turnGunLeft(angle);
-            fireBullet(getEnergy());
-        }
-    }
-
-    public void onScannedRobot(ScannedRobotEvent e) {
-        fire(1);
-    }
-
-    public void onHitByBullet(HitByBulletEvent e) {
-        turnLeft(90 - e.getBearing());
-    }
-
+		// robot main loop
+		while(true) {
+			setAhead(1000);
+			turnGunLeft(180);
+			turnGunRight(180);
+		}
+	}
+	public void onScannedRobot(ScannedRobotEvent e) {
+		fire(1);
+	}
+	public void onHitByBullet(HitByBulletEvent e) {
+		back(25);
+	}
+	public void onHitWall(HitWallEvent e) {
+		turnLeft(90);
+	}
 }
