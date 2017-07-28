@@ -3,7 +3,7 @@ package de.metro.robocode;
 import robocode.*;
 import java.util.Random;
 
-public class fc extends AdvancedRobot {
+public class fc extends AdvancedRobot
 {
 	double movefactor = 1;
 	boolean block = false;
